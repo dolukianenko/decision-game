@@ -1,0 +1,40 @@
+[
+    {
+        "id": "q1",
+        "text": "Do you have a problem?",
+        "answers": [
+            {
+                "value": "Yes",
+                "nextQuestionId": "q2"
+            },
+            {
+                "value": "No",
+                "nextQuestionId": "q3"
+            }
+        ]
+    },
+    {
+        "id": "q2",
+        "text": "Can you do something about it?",
+        "answers": [
+            {
+                "value": "Yes",
+                "nextQuestionId": "q4"
+            },
+            {
+                "value": "No",
+                "nextQuestionId": "q3"
+            }
+        ]
+    },
+    {
+        "id": "q3",
+        "text": "Do not worry then.",
+        "answers": []
+    },
+    {
+        "id": "q4",
+        "text": "Do it!",
+        "answers": []
+    }
+]
