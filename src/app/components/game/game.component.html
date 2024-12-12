@@ -1,4 +1,4 @@
 <div class="game-container">
-    <app-question></app-question>
+    <app-question [question]="currentQuestion" (answerSelected)="handleAnswerClick($event)"></app-question>
     <app-diagram></app-diagram>
 </div>

@@ -1,0 +1,8 @@
+<div class="question-container">
+    <p class="question-text">{{ question?.text }}</p>
+</div>
+<div class="answer-buttons">
+    <button mat-raised-button *ngFor="let answer of question?.answers" (click)="onAnswerClick(answer)">
+        {{ answer.value }}
+    </button>
+</div>
