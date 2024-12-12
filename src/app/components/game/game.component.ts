@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { QuestionComponent } from '../question/question.component';
 import { DiagramComponent } from '../diagram/diagram.component';
@@ -12,10 +12,9 @@ import { QuestionService } from '../../services/question.service';
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
-export class GameComponent {
+export class GameComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   currentQuestion: Question | undefined;
-
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
