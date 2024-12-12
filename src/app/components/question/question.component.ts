@@ -12,7 +12,7 @@ import { Answer, Question } from '../../models/question.model';
 })
 export class QuestionComponent {
   @Input() question?: Question;
-  @Output() answerSelected: EventEmitter<Answer> = new EventEmitter();
+  @Output() answerSelected: EventEmitter<Answer> = new EventEmitter<Answer>();
 
   onAnswerClick(answer: Answer): void {
     this.answerSelected.emit(answer);

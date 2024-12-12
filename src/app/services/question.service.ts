@@ -34,8 +34,12 @@ export class QuestionService {
     );
   }
 
-  private handleError(error: any): Observable<Question[]> {
-    console.error('Failed to load questions', error);
+  private handleError(error: unknown): Observable<Question[]> {
+    if (error instanceof Error) {
+      console.error('Failed to load questions', error.message);
+    } else {
+      console.error('Failed to load questions', error);
+    }
     return of([]);
   }
 }
