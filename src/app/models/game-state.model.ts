@@ -1,5 +1,5 @@
 export interface AnsweredQuestion {
-    questionId: string | undefined;
+    questionId: string;
     selectedAnswer: string;
 }
 
