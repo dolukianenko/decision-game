@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,7 +14,7 @@ import { GameLogicService } from '../../services/game-logic.service';
   templateUrl: './question.component.html',
   styleUrl: './question.component.css'
 })
-export class QuestionComponent {
+export class QuestionComponent implements OnInit, OnDestroy {
   @Input() question: Question | null = null;
   @Output() answerSelected: EventEmitter<Answer> = new EventEmitter<Answer>();
   @Output() seeYourChoicesClicked: EventEmitter<void> = new EventEmitter<void>();
