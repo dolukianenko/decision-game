@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { Question } from '../models/question.model';
+import { AnsweredQuestion } from '../models/game-state.model';
+import { ChoicesOverview } from '../models/choices-overview.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,15 +24,35 @@ export class QuestionService {
     }
   }
 
-  getFirstQuestion(): Observable<Question | undefined> {
+  getFirstQuestion(): Observable<Question> {
+    return this.loadQuestions().pipe(map((questions) => questions[0]));
+  }
+
+  getQuestionById(id: string): Observable<Question> {
     return this.loadQuestions().pipe(
-      map((questions) => questions[0])
+      map((questions) => questions.find((q) => q.id === id) || { id: 'notFound', text: 'Question not found', answers: [] })
     );
   }
 
-  getQuestionById(id: string): Observable<Question | undefined> {
+  isLastQuestion(questionId: string): Observable<boolean> {
+    return this.getQuestionById(questionId).pipe(
+      map((question) => question.answers.length === 0)
+    );
+  }
+
+  mapAnsweredQuestionsToChoices(answeredQuestions: AnsweredQuestion[]): Observable<ChoicesOverview[]> {
     return this.loadQuestions().pipe(
-      map((questions) => questions.find((q) => q.id === id))
+      map((questions) => {
+        const idToAnswerMap = new Map<string, string>();
+        answeredQuestions.forEach((item) => idToAnswerMap.set(item.questionId, item.selectedAnswer));
+
+        return questions
+          .filter((question) => idToAnswerMap.has(question.id))
+          .map((question) => ({
+            answeredQuestionText: question.text,
+            selectedAnswer: idToAnswerMap.get(question.id) || 'No Answer'
+          }));
+      })
     );
   }
 

@@ -26,7 +26,9 @@ import { ChoicesOverviewComponent } from '../choices-overview/choices-overview.c
 })
 export class GameComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
+
   currentQuestion: Question | null = null;
+  showChoicesOverview = false;
 
   constructor(private questionService: QuestionService, private gameStateService: GameStateService) { }
 
@@ -37,6 +39,10 @@ export class GameComponent implements OnInit, OnDestroy {
   handleAnswerClick(answer: Answer): void {
     this.gameStateService.updateAnsweredQuestions(answer);
     this.loadNextQuestion(answer.nextQuestionId);
+  }
+
+  handleSeeYourChoicesClick(): void {
+    this.showChoicesOverview = true;
   }
 
   resetGame(): void {
@@ -83,6 +89,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private resetState(): void {
+    this.showChoicesOverview = false;
     this.currentQuestion = null;
     this.gameStateService.clearState();
   }

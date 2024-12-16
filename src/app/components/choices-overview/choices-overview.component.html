@@ -1,0 +1,17 @@
+<mat-card class="choices-container">
+    <mat-card-header>
+        <mat-card-title>Choices Overview</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="choices-list">
+            <div *ngFor="let answeredChoice of choicesOverviewList" class="choice-item">
+                <div class="question-text">
+                    Q: {{ answeredChoice.answeredQuestionText }}
+                </div>
+                <div class="answer-text">
+                    A: {{ answeredChoice.selectedAnswer }}
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

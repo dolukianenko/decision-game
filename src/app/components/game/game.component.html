@@ -2,7 +2,13 @@
     <button mat-stroked-button class="mat-primary" (click)="resetGame()">
         <mat-icon>replay</mat-icon> Restart
     </button>
-    <div *ngIf="currentQuestion">
-        <app-question [question]="currentQuestion" (answerSelected)="handleAnswerClick($event)"></app-question>
+    <div *ngIf="currentQuestion && !showChoicesOverview">
+        <app-question
+            [question]="currentQuestion"
+            (answerSelected)="handleAnswerClick($event)"
+            (seeYourChoicesClicked)="handleSeeYourChoicesClick()"></app-question>
+    </div>
+    <div *ngIf="showChoicesOverview">
+        <app-choices-overview></app-choices-overview>
     </div>
 </div>

@@ -1,0 +1,29 @@
+.choices-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .choices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .choice-item {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .question-text {
+    font-size: 1.2rem;
+  }
+  
+  .answer-text {
+    font-size: 1rem;
+    padding-left: 20px;
+  }
+  
