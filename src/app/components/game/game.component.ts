@@ -1,44 +1,89 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Observable, Subject, switchMap, take, takeUntil } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 import { QuestionComponent } from '../question/question.component';
-import { DiagramComponent } from '../diagram/diagram.component';
 import { Answer, Question } from '../../models/question.model';
 import { QuestionService } from '../../services/question.service';
+import { GameStateService } from '../../services/game-state.service';
+import { GameState } from '../../models/game-state.model';
+import { ChoicesOverviewComponent } from '../choices-overview/choices-overview.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [QuestionComponent, DiagramComponent],
+  imports: [
+    QuestionComponent,
+    ChoicesOverviewComponent,
+    MatButtonModule,
+    CommonModule,
+    MatIconModule
+  ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
 export class GameComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
-  currentQuestion: Question | undefined;
-  constructor(private questionService: QuestionService) { }
+  currentQuestion: Question | null = null;
+
+  constructor(private questionService: QuestionService, private gameStateService: GameStateService) { }
 
   ngOnInit(): void {
-    this.getStartingQuestion();
+    this.initializeGame();
   }
 
-  getStartingQuestion(): void {
-    this.questionService.getFirstQuestion()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((firstQuestion) => this.currentQuestion = firstQuestion);
+  handleAnswerClick(answer: Answer): void {
+    this.gameStateService.updateAnsweredQuestions(answer);
+    this.loadNextQuestion(answer.nextQuestionId);
   }
 
-  handleAnswerClick(answer: Answer) {
-    this.getNextQuestion(answer.nextQuestionId);
-  }
-
-  getNextQuestion(id: string) {
-    this.questionService.getQuestionById(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((question) => this.currentQuestion = question);
+  resetGame(): void {
+    this.resetState();
+    this.loadFirstQuestion();
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  private initializeGame(): void {
+    this.gameStateService.getGameState().pipe(
+      take(1),
+      switchMap((state: GameState) => this.loadInitialQuestion(state.currentQuestionId))
+    ).subscribe((question: Question) => this.handleQuestionLoaded(question));
+  }
+
+  private loadInitialQuestion(questionId: string): Observable<Question> {
+    return questionId
+      ? this.questionService.getQuestionById(questionId)
+      : this.questionService.getFirstQuestion();
+  }
+
+  private loadNextQuestion(nextQuestionId: string): void {
+    this.questionService.getQuestionById(nextQuestionId).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((question: Question) => this.handleQuestionLoaded(question));
+  }
+
+  private loadFirstQuestion(): void {
+    this.questionService.getFirstQuestion().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((question: Question) => this.handleQuestionLoaded(question));
+  }
+
+  private handleQuestionLoaded(question: Question): void {
+    if (!question) return;
+    this.currentQuestion = question;
+    if (!this.gameStateService.getGameStateValue()?.currentQuestionId) {
+      this.gameStateService.updateCurrentQuestionId(question.id);
+    }
+  }
+
+  private resetState(): void {
+    this.currentQuestion = null;
+    this.gameStateService.clearState();
   }
 }

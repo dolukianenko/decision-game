@@ -1,8 +1,21 @@
 .game-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    position: relative;
     padding: 0 20px;
+    height: 100vh;
 }
+
+button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+mat-icon {
+    font-size: 20px;
+    margin-right: 8px; 
+  }

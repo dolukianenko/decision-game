@@ -1,4 +1,8 @@
 <div class="game-container">
-    <app-question [question]="currentQuestion" (answerSelected)="handleAnswerClick($event)"></app-question>
-    <app-diagram></app-diagram>
+    <button mat-stroked-button class="mat-primary" (click)="resetGame()">
+        <mat-icon>replay</mat-icon> Restart
+    </button>
+    <div *ngIf="currentQuestion">
+        <app-question [question]="currentQuestion" (answerSelected)="handleAnswerClick($event)"></app-question>
+    </div>
 </div>
