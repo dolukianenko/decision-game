@@ -13,8 +13,8 @@ describe('GameStateService', () => {
     spyOn(localStorage, 'getItem').and.callFake((key: string) => {
       return key === 'gameState' ? '{"currentQuestionId": "1", "answeredQuestions": []}' : null;
     });
-    spyOn(localStorage, 'setItem').and.callFake(() => {});
-    spyOn(localStorage, 'removeItem').and.callFake(() => {});
+    spyOn(localStorage, 'setItem').and.stub();
+    spyOn(localStorage, 'removeItem').and.stub();
 
     TestBed.configureTestingModule({});
     service = TestBed.inject(GameStateService);

@@ -19,7 +19,7 @@
         "answers": [
             {
                 "value": "Yes",
-                "nextQuestionId": "q4"
+                "nextQuestionId": "q3"
             },
             {
                 "value": "No",
@@ -30,11 +30,6 @@
     {
         "id": "q3",
         "text": "Do not worry then.",
-        "answers": []
-    },
-    {
-        "id": "q4",
-        "text": "Do it!",
         "answers": []
     }
 ]
