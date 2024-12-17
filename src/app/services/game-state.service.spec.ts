@@ -82,6 +82,4 @@ describe('GameStateService', () => {
       expect(state.currentQuestionId).toBe('2');
     });
   });
-
-
 });
