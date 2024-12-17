@@ -1,7 +1,7 @@
 [
     {
         "id": "q1",
-        "text": "Do you have a problem?",
+        "text": "You stand at the edge of a magical forest. Do you want to enter?",
         "answers": [
             {
                 "value": "Yes",
@@ -15,21 +15,88 @@
     },
     {
         "id": "q2",
-        "text": "Can you do something about it?",
+        "text": "Inside the forest, you meet a talking rabbit. The rabbit asks: 'Do you want to follow me to a magical pond?'",
         "answers": [
             {
                 "value": "Yes",
-                "nextQuestionId": "q3"
+                "nextQuestionId": "q4"
             },
             {
                 "value": "No",
-                "nextQuestionId": "q3"
+                "nextQuestionId": "q5"
             }
         ]
     },
     {
         "id": "q3",
-        "text": "Do not worry then.",
+        "text": "You decide not to enter the forest. Do you regret not going inside?",
+        "answers": [
+            {
+                "value": "Yes",
+                "nextQuestionId": "q6"
+            },
+            {
+                "value": "No",
+                "nextQuestionId": "q7"
+            }
+        ]
+    },
+    {
+        "id": "q4",
+        "text": "The rabbit leads you to a glowing pond where a magical fish offers to grant you one wish. Do you make a wish?",
+        "answers": [
+            {
+                "value": "Yes",
+                "nextQuestionId": "q8"
+            },
+            {
+                "value": "No",
+                "nextQuestionId": "q9"
+            }
+        ]
+    },
+    {
+        "id": "q5",
+        "text": "You decide not to follow the rabbit and explore the forest yourself. Do you find something interesting?",
+        "answers": [
+            {
+                "value": "Yes",
+                "nextQuestionId": "q10"
+            },
+            {
+                "value": "No",
+                "nextQuestionId": "q11"
+            }
+        ]
+    },
+    {
+        "id": "q6",
+        "text": "You regret not going inside the forest, but as you walk away, you feel peaceful. The adventure ends here.",
+        "answers": []
+    },
+    {
+        "id": "q7",
+        "text": "You decide you're fine without the forest, and you walk away with a sense of contentment. The adventure ends here.",
+        "answers": []
+    },
+    {
+        "id": "q8",
+        "text": "You wish for endless candy, and candy falls from the sky! What a sweet adventure!",
+        "answers": []
+    },
+    {
+        "id": "q9",
+        "text": "You decide not to make a wish. You enjoy the peaceful glow of the pond, feeling calm and happy.",
+        "answers": []
+    },
+    {
+        "id": "q10",
+        "text": "You find a sparkling gem hidden in the forest. You feel lucky and excited!",
+        "answers": []
+    },
+    {
+        "id": "q11",
+        "text": "You continue exploring but don’t find anything magical. Maybe next time.",
         "answers": []
     }
 ]
