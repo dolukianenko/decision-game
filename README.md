@@ -1,27 +1,13 @@
-# DecisionGame
+# DecisionGame - Angular Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+The Decision Game is an interactive Angular-based web application where players can make choices and progress through different paths to reach one of several possible endings. The game presents the player with a series of questions, each with two possible answers. Based on the player's choice, they are directed to the next set of questions or an ending.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Clone the repository: git clone https://github.com/dolukianenko/decision-game.git.
+2. Navigate to the project directory: cd decision-game.
+3. Install dependencies: npm install.
 
-## Code scaffolding
+## Run the application:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Run `ng serve` and navigate to `http://localhost:4200/`. 
